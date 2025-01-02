@@ -1,0 +1,9 @@
+databaseChangeLog:
+    - changeSet:
+        id: create-author
+        author: tework
+        changes:
+            - renameColumn:
+                tableName: student
+                newColumnName: student_id
+                oldColumnName: id

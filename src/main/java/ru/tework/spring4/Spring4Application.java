@@ -8,8 +8,6 @@ public class Spring4Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Spring4Application.class, args);
-		int привит = 123;
-		System.out.print("Сигодня хорошая погода");
 		
 	}
 

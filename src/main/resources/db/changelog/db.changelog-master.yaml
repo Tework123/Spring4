@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create-db-init.yaml
+#   - include:
+#       file: db/changelog/changeset/rename_column_name_student.yaml
+  - include:
+      file: db/changelog/changeset/rename_column_student_id.yaml
+  - include:
+      file: db/changelog/changeset/create_achievements.yaml
+
