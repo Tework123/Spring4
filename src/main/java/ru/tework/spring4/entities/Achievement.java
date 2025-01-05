@@ -3,6 +3,7 @@ package ru.tework.spring4.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,10 +26,18 @@ public class Achievement {
     private int bonus;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "student_achievement",
-    joinColumns = @JoinColumn(name = "achievement_id"),
-    inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private Set<Achievement> achievements = new HashSet<>();
+    @JoinTable(name = "student_achievement", joinColumns = @JoinColumn(name = "achievement_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private Set<Student> students = new HashSet<>();
+
+
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 
     public Achievement(long id, int bonus) {
         this.id = id;
