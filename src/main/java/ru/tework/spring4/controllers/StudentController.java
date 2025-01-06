@@ -5,11 +5,14 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.persistence.EntityManager;
+import ru.tework.spring4.dto.KafkaDto;
 import ru.tework.spring4.entities.Achievement;
 import ru.tework.spring4.entities.Student;
 import ru.tework.spring4.repositories.AchievementRepository;
@@ -17,6 +20,8 @@ import ru.tework.spring4.repositories.StudentRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class StudentController {
@@ -59,5 +64,7 @@ public class StudentController {
         }
         return "123";
     }
+
+
 
 }
