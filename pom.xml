@@ -73,6 +73,12 @@
 			<artifactId>liquibase-core</artifactId>
 			<version>4.30.0</version>
 		</dependency>
+		<dependency>
+			<groupId>ru.tework</groupId>
+			<artifactId>spring6kafka</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 
