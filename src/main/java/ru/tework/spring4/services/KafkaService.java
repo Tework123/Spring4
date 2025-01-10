@@ -6,6 +6,6 @@ import ru.tework.spring4.dto.KafkaDto;
 
 public interface KafkaService {
 
-    Integer createKafkaDto(KafkaDto kafkaDto) throws InterruptedException, ExecutionException;
+    String createKafkaDto(KafkaDto kafkaDto) throws InterruptedException, ExecutionException;
 
 }

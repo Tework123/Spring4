@@ -22,8 +22,8 @@ public class KafkaController {
     }
 
     @PostMapping("/kafka")
-    public ResponseEntity<Integer> postMethodName(@RequestBody KafkaDto kafkaDto) throws InterruptedException, ExecutionException {
-        Integer kafkaId = kafkaServiceImpl.createKafkaDto(kafkaDto);
+    public ResponseEntity<String> postMethodName(@RequestBody KafkaDto kafkaDto) throws InterruptedException, ExecutionException {
+        String kafkaId = kafkaServiceImpl.createKafkaDto(kafkaDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(kafkaId);
     }

@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -24,16 +25,22 @@ public class KafkaServiceImpl implements KafkaService {
     }
 
     @Override
-    public Integer createKafkaDto(KafkaDto kafkaDto) throws InterruptedException, ExecutionException {
-        Random rnd = new Random();
-        Integer kafkaId = rnd.nextInt(6);
+    public String createKafkaDto(KafkaDto kafkaDto) throws InterruptedException, ExecutionException {
+        Random random = new Random();
+        String kafkaId = UUID.randomUUID().toString();
 
         KafkaEventMy kafkaEvent = new KafkaEventMy(kafkaId, kafkaDto.getTitle(),
                 kafkaDto.getPrice(),
                 kafkaDto.getQuantity());
 
-        SendResult<String, KafkaEventMy> result = kafkaTemplate.send("product-created-events-topic",
-                kafkaId.toString(0), kafkaEvent).get();
+        // for headers
+        ProducerRecord<String, KafkaEventMy> record = new ProducerRecord<String, KafkaEventMy>(
+                "product-created-events-topic", kafkaId, kafkaEvent);
+
+        record.headers().add("messageId", UUID.randomUUID().toString().getBytes());
+
+        // send to broker kafka
+        SendResult<String, KafkaEventMy> result = kafkaTemplate.send(record).get();
 
         LOGGER.info("Topic: {}", result.getRecordMetadata().topic());
         LOGGER.info("Partition: {}", result.getRecordMetadata().partition());
